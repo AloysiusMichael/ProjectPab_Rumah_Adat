@@ -67,7 +67,7 @@ class RumahTile extends StatelessWidget {
                             topLeft: Radius.circular(12),
                             bottomRight: Radius.circular(12))),
                     child: const Icon(
-                      Icons.add,
+                      Icons.favorite_border,
                       color: Colors.white,
                     ))
               ],

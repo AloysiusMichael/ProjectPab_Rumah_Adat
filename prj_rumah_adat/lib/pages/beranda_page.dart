@@ -35,8 +35,9 @@ class _BerandaState extends State<Beranda> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 25),
           child: Text(
-            'Kata - kata mutiara ',
-            style: TextStyle(color: Colors.grey[600]),
+            'RUMAH ADAT NUSANTARA',
+            style:
+                TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[600]),
           ),
         ),
 

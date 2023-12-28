@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rumah_adat/components/bottom_nav_bar.dart';
+import 'package:rumah_adat/components/drawer.dart';
 import 'package:rumah_adat/pages/beranda_page.dart';
 import 'package:rumah_adat/pages/favorit_page.dart';
+import 'package:rumah_adat/pages/intro_page.dart';
+import 'package:rumah_adat/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,6 +28,8 @@ class _HomePageState extends State<HomePage> {
     const Beranda(),
     //Halaman Favorite
     const FavoritPage(),
+    //Halaman Profile
+    const ProfilePage(),
   ];
 
   @override
@@ -52,60 +57,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.grey[900],
-        child: Column(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Logo men Ado
-
-                // Halaman Lain (Login?, aBOUT[TTG APLIKASI NY, LATAR BELAKANG KT BUAT APK NY,], LOGOUT?)
-                const Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      'Profile',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.info,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      'About',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Padding(
-              padding: const EdgeInsets.only(left: 25.0, bottom: 25),
-              child: ListTile(
-                leading: Icon(
-                  Icons.logout,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  'Logout',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerMenu(),
       body: _pages[_selectedIndex],
     );
   }
