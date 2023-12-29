@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rumah_adat/components/drawer.dart';
-import 'package:rumah_adat/pages/intro_page.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 
