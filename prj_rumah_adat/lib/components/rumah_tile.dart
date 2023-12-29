@@ -5,7 +5,8 @@ import 'package:rumah_adat/models/rumah.dart';
 
 class RumahTile extends StatelessWidget {
   Rumah rumah;
-  RumahTile({super.key, required this.rumah});
+  void Function()? onTap;
+  RumahTile({super.key, required this.rumah, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -59,17 +60,20 @@ class RumahTile extends StatelessWidget {
                 ),
 
                 // Button
-                Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12))),
-                    child: const Icon(
-                      Icons.favorite_border,
-                      color: Colors.white,
-                    ))
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12))),
+                      child: const Icon(
+                        Icons.favorite_border,
+                        color: Colors.white,
+                      )),
+                )
               ],
             ),
           )

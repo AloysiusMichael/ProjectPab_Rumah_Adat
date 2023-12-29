@@ -35,7 +35,7 @@ class DrawerMenu extends StatelessWidget {
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProfilePage(),
+                        builder: (context) => const ProfilePage(),
                       )),
                   child: ListTile(
                     leading: Icon(
