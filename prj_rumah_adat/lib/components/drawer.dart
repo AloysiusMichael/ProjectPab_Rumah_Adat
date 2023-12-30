@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rumah_adat/pages/beranda_page.dart';
 import 'package:rumah_adat/pages/home_page.dart';
 import 'package:rumah_adat/pages/intro_page.dart';
 import 'package:rumah_adat/pages/profile_page.dart';
@@ -32,11 +31,6 @@ class DrawerMenu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ProfilePage(),
-                      )),
                   child: ListTile(
                     leading: Icon(
                       Icons.person,
@@ -47,18 +41,17 @@ class DrawerMenu extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     hoverColor: Colors.grey[600],
-                    onTap: () {},
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        )),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      )),
                   child: ListTile(
                     leading: Icon(
                       Icons.home,
@@ -69,7 +62,11 @@ class DrawerMenu extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     hoverColor: Colors.grey[600],
-                    onTap: () {},
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        )),
                   ),
                 ),
               ),
@@ -101,11 +98,6 @@ class DrawerMenu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, bottom: 25),
                 child: GestureDetector(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => IntroPage(),
-                      )),
                   child: ListTile(
                     leading: Icon(
                       Icons.logout,
@@ -116,7 +108,11 @@ class DrawerMenu extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     hoverColor: Colors.grey[600],
-                    onTap: () {},
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => IntroPage(),
+                        )),
                   ),
                 ),
               ),
