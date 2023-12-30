@@ -57,12 +57,13 @@ class IntroPage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(25),
                       child: const Center(
-                        child: const Text(
+                        child: Text(
                           "Mulai Petualangan",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
