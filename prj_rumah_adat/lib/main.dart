@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       create: (context) => Favorit(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: HomePage(),
       ),
     );
   }

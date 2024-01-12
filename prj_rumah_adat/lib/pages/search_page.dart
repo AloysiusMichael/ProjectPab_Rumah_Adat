@@ -6,14 +6,14 @@ import 'package:rumah_adat/models/rumah.dart';
 import 'package:rumah_adat/pages/detail_page.dart';
 
 class SearchRumah extends StatefulWidget {
-  const SearchRumah({super.key});
-
   @override
   State<SearchRumah> createState() => _SearchRumahState();
 }
 
 class _SearchRumahState extends State<SearchRumah> {
-  late List<Rumah> _rumahAdat;
+  late List<Rumah> _rumahAdat = [];
+
+  Favorit listRumahAdat = Favorit();
 
   String _searchQuery = '';
 
@@ -52,7 +52,7 @@ class _SearchRumahState extends State<SearchRumah> {
                 onChanged: (query) {
                   setState(() {
                     _searchQuery = query.toLowerCase();
-                    _rumahAdat = _rumahAdat
+                    _rumahAdat = listRumahAdat.rumahAdat
                         .where((rumah) =>
                             rumah.nama.toLowerCase().contains(_searchQuery) ||
                             rumah.asal.toLowerCase().contains(_searchQuery))
@@ -85,7 +85,7 @@ class _SearchRumahState extends State<SearchRumah> {
                     )
                   ],
                 ),
-                margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                margin: EdgeInsets.only(left: 15, right: 15, bottom: 15),
                 child: ListTile(
                   title: Text(
                     rumah.nama,

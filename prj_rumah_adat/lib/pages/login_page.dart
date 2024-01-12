@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
 
   //sign user in method
-  void signUserIn() {}
+  void signUserIn() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-            children: const [
+            children: [
               const SizedBox(height: 50),
 
               //logo
