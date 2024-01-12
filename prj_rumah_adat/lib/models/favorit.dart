@@ -9,7 +9,7 @@ class Favorit extends ChangeNotifier {
         nama: "Rumah Gadang",
         asal: "Sumatera Barat",
         deskripsi:
-            "Rumah Gadang menjadi hunian paling populer di Minangkabau, Sumatera Barat. ",
+            "Rumah Gadang adalah nama untuk rumah adat Minangkabau yang merupakan rumah tradisional dan banyak jumpai di Sumatera Barat, Indonesia. Rumah ini juga disebut dengan nama lain oleh masyarakat setempat dengan nama Rumah Bagonjong atau ada juga yang menyebut dengan nama Rumah Baanjuang.",
         imagePath: 'images/rmh_gadang.jpg',
         dibangun: '1895'),
     Rumah(
@@ -30,7 +30,7 @@ class Favorit extends ChangeNotifier {
         nama: "Rumah Limas",
         asal: "Sumatera Selatan",
         deskripsi:
-            "Rumah Limas merupakan rumah panggung, untuk tempat tinggal para bangasawan. Rumah Limas berjenjang lima dengan bermakna Lima Emas, yaitu keagungan, rukun dan damai, sopan santun, aman dan subur, kemudian makmur dan sejahtera.   ",
+            "Rumah Limas merupakan rumah tradisional Sumatera Selatan. Selain ditandai dengan atapnya yang berbentuk limas, rumah tradisional ini memiliki lantai bertingkat-tingkat yang disebut Bengkilas atau Kijing dan hanya dipergunakan untuk kepentingan keluarga seperti hajatan.",
         imagePath: 'images/rmh_limas.jpg',
         dibangun: '1830'),
     Rumah(
@@ -44,7 +44,7 @@ class Favorit extends ChangeNotifier {
         nama: "Rumah Nuwo Sesat",
         asal: "Lampung",
         deskripsi:
-            "Rumah adat Nuwo Sesat berfungsi sebagai tempat pertemuan adat bagi para purwatin (Penyimbang) pada saat mengadakan pepung adat (Musyawarah).",
+            "Nuwo Sesat terdiri dari dua kata, yaitu NUWO yang berarti rumah atau tempat tinggal, dan SESAT yang memiliki makna musyawarah. Rumah adat ini memiliki fungsi sebagai tempat pertemuan adat bagi para purwatin (penyimbang) saat mengadakan pepung adat (musyawarah).",
         imagePath: 'images/rmh_nuwosesat.jpeg',
         dibangun: '1800-an'),
     Rumah(

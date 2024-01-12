@@ -4,6 +4,7 @@ import 'package:rumah_adat/models/favorit.dart';
 import 'package:rumah_adat/pages/beranda_page.dart';
 import 'package:rumah_adat/pages/home_page.dart';
 import 'package:rumah_adat/pages/intro_page.dart';
+import 'package:rumah_adat/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       create: (context) => Favorit(),
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: IntroPage(),
+        home: HomePage(),
       ),
     );
   }

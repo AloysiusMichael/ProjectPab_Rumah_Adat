@@ -38,7 +38,7 @@ class IntroPage extends StatelessWidget {
                 const Text(
                   "Selamat datang dalam aplikasi kami yang mempersembahkan keindahan dan kekayaan rumah adat Indonesia. Kami dengan bangga membuka jendela virtual ini, mengajak Anda untuk menjelajahi warisan budaya yang beragam melalui arsitektur, hiasan, dan cerita di balik setiap rumah adat. Aplikasi ini bukan hanya pintu gerbang virtual, melainkan teman setia yang membimbing Anda menembus sejarah dan tradisi yang kaya di seluruh nusantara. Mari bersama-sama meresapi keunikan setiap detail dan memperkaya pengetahuan serta apresiasi terhadap rumah adat Indonesia. Selamat menikmati perjalanan virtual Anda dan semoga aplikasi ini dapat membawa Anda lebih dekat dengan keajaiban budaya Indonesia yang memukau. Terima kasih telah bergabung dengan kami!",
                   style: TextStyle(fontSize: 20, color: Colors.grey),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.justify,
                 ),
                 const SizedBox(height: 40),
                 //start now ButtonBar

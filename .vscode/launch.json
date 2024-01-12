@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "prj_rumah_adat",
+            "cwd": "prj_rumah_adat",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "prj_rumah_adat (profile mode)",
+            "cwd": "prj_rumah_adat",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "prj_rumah_adat (release mode)",
+            "cwd": "prj_rumah_adat",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
