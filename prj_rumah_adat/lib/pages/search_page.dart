@@ -1,102 +1,127 @@
 import 'package:flutter/material.dart';
-import 'package:rumah_adat/models/rumah.dart';
+import 'package:provider/provider.dart';
+import 'package:rumah_adat/components/rumah_tile.dart';
 import 'package:rumah_adat/models/favorit.dart';
+import 'package:rumah_adat/models/rumah.dart';
+import 'package:rumah_adat/pages/detail_page.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+class SearchRumah extends StatefulWidget {
+  const SearchRumah({super.key});
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<SearchRumah> createState() => _SearchRumahState();
 }
 
-class _SearchPageState extends State<SearchPage> {
-  //TODO 1 VARIABEl
-  List<Rumah>? _filteredRumahs = rumahAdat;
-  String _searchQuery = '';
-  TextEditingController _searchController = TextEditingController();
+class _SearchRumahState extends State<SearchRumah> {
+  late List<Rumah> _rumahAdat;
 
-  static List<Rumah>? get rumahAdat => null;
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _rumahAdat = Provider.of<Favorit>(context, listen: false).getRumahAdat();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO 2 appBar
       appBar: AppBar(
-        title: Text('Pencarian'),
+        title: const Text('Pencarian Rumah Adat'),
       ),
       body: Column(
         children: [
-          //TODO 4 TEXTFIELD
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15),
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.deepPurple.shade50),
-              child: const TextField(
-                autofocus: false,
-                decoration: InputDecoration(
-                    hintText: 'Cari Rumah Adat',
-                    prefixIcon: Icon(Icons.search),
-                    border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepPurple),
-                    ),
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.grey[50],
+              ),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Cari Rumah Adat...',
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white70),
+                  ),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                ),
+                onChanged: (query) {
+                  setState(() {
+                    _searchQuery = query.toLowerCase();
+                    _rumahAdat = _rumahAdat
+                        .where((rumah) =>
+                            rumah.nama.toLowerCase().contains(_searchQuery) ||
+                            rumah.asal.toLowerCase().contains(_searchQuery))
+                        .toList();
+                  });
+                },
               ),
             ),
           ),
-          //TODO 5 LISTVIEW
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: _filteredRumahs?.length,
-              itemBuilder: (context, index) {
-                final rumah = _filteredRumahs?[index];
-                return Card(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        width: 100,
-                        height: 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            rumah!.imagePath,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              rumah.nama,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text(rumah.asal)
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+          const SizedBox(
+            height: 8,
           ),
+          Expanded(
+              child: ListView.builder(
+            itemCount:
+                _searchQuery.isEmpty ? _rumahAdat.length : _rumahAdat.length,
+            itemBuilder: (context, index) {
+              final rumah =
+                  _searchQuery.isEmpty ? _rumahAdat[index] : _rumahAdat[index];
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white24,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: const Offset(0, 1),
+                    )
+                  ],
+                ),
+                margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                child: ListTile(
+                  title: Text(
+                    rumah.nama,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    rumah.asal,
+                    style: const TextStyle(
+                      color: Color.fromRGBO(148, 155, 167, 1),
+                    ),
+                  ),
+                  trailing: const Icon(Icons.navigate_next),
+                  leading: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(rumah.imagePath),
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailPage(rumah: rumah)));
+                  },
+                ),
+              );
+            },
+          ))
         ],
       ),
     );
