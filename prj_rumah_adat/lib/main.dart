@@ -5,6 +5,7 @@ import 'package:rumah_adat/pages/beranda_page.dart';
 import 'package:rumah_adat/pages/home_page.dart';
 import 'package:rumah_adat/pages/intro_page.dart';
 import 'package:rumah_adat/pages/login_page.dart';
+import 'package:rumah_adat/pages/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +19,14 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => Favorit(),
       builder: (context, child) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HomePage(),
-      ),
+          debugShowCheckedModeBanner: false,
+          home: IntroPage(),
+          initialRoute: '/',
+          routes: {
+            '/homescreen': (context) => const HomePage(),
+            '/signin': (context) => LoginPage(),
+            '/signup': (context) => const SignUpScreen()
+          }),
     );
   }
 }

@@ -1,87 +1,179 @@
+import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:rumah_adat/components/my_button.dart';
-import 'package:rumah_adat/components/my_textfield.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  LoginPage({super.key});
 
-  //text editing controller
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  @override
+  State<LoginPage> createState() => _SignInScreenState();
+}
 
-  //sign user in method
-  void signUserIn() async {}
+class _SignInScreenState extends State<LoginPage> {
+  //TODO 1: Deklarasikan variabel
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  String _errorText = '';
+  bool _isSignedIn = false;
+  bool _obscurePassword = false;
+
+  Future<Map<String, String>> _retrieveAndDecryptDataFromPrefs(
+      SharedPreferences sharedPreferences) async {
+    final encryptedUsername = sharedPreferences.getString('username') ?? '';
+    final encryptedPassword = sharedPreferences.getString('password') ?? '';
+    final keyString = sharedPreferences.getString('key') ?? '';
+    final ivString = sharedPreferences.getString('iv') ?? '';
+
+    final encrypt.Key key = encrypt.Key.fromBase64(keyString);
+    final iv = encrypt.IV.fromBase64(ivString);
+
+    final encrypter = encrypt.Encrypter(encrypt.AES(key));
+    final decryptedUsername = encrypter.decrypt64(encryptedUsername, iv: iv);
+    final decryptedPassword = encrypter.decrypt64(encryptedPassword, iv: iv);
+
+    // Mengembalikan data terdekripsi
+    return {'username': decryptedUsername, 'password': decryptedPassword};
+  }
+
+  void _signIn() async {
+    try {
+      final Future<SharedPreferences> prefsFuture =
+          SharedPreferences.getInstance();
+
+      final String username = _usernameController.text;
+      final String password = _passwordController.text;
+      print('Sign in attempt');
+
+      if (username.isNotEmpty && password.isNotEmpty) {
+        final SharedPreferences prefs = await prefsFuture;
+        final data = await _retrieveAndDecryptDataFromPrefs(prefs);
+        if (data.isNotEmpty) {
+          final decryptedUsername = data['username'];
+          final decryptedPassword = data['password'];
+          if (username == decryptedUsername && password == decryptedPassword) {
+            _errorText = '';
+            _isSignedIn = true;
+            prefs.setBool('isSignedIn', true);
+
+            // Pemanggilan untuk menghapus semua halaman dalam tumpukan navigasi
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            });
+            // Sign in berhasil, navigasikan ke layar utama
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.pushNamed(context, '/homescreen');
+            });
+            print('Sign in succeeded');
+          } else {
+            print('Username or password is incorrect');
+          }
+        } else {
+          print('No stored credentials found');
+        }
+      } else {
+        print('Username and password cannot be empty');
+        // Tambahkan pesan untuk kasus ketika username atau password kosong
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-
-              //logo
-              const Icon(
-                Icons.lock,
-                size: 100,
-              ),
-
-              const SizedBox(height: 50),
-
-              //welcome
-              Text(
-                'Selamat datang',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                ),
-              ),
-
-              const SizedBox(height: 25),
-
-              //username
-              MyTextField(
-                controller: usernameController,
-                hintText: 'Username',
-                obscureText: false,
-              ),
-
-              const SizedBox(height: 10),
-
-              //password
-              MyTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: true,
-              ),
-
-              //forgot password
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Lupa Password?',
-                      style: TextStyle(color: Colors.grey),
+      //TODO 2: Pasang Appbar
+      appBar: AppBar(
+        title: Text('Sign In'),
+      ),
+      //TODO 3 : Pasang body
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Form(
+                child: Column(
+              //TODO 4 Atur mainAxisAlignment dan CrossAxisAlignment
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset(
+                      'images/Heliotrope.png',
+                      width: double.infinity,
+                      height: 200,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 25),
-
-              //sign in button
-              MyButton(
-                onTap: signUserIn,
-              ),
-
-              const SizedBox(height: 25),
-
-              //register
-            ],
+                //TODO 5 Pasang TextFormField Nama Pengguna
+                TextFormField(
+                  controller: _usernameController,
+                  decoration: InputDecoration(
+                      labelText: "Nama Pengguna", border: OutlineInputBorder()),
+                ),
+                // TODO 6 Pasang TextFormField Kata Sandi
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: "Kata Sandi",
+                    errorText: _errorText.isNotEmpty ? _errorText : null,
+                    border: OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                      icon: Icon(_obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                    ),
+                  ),
+                  obscureText: _obscurePassword,
+                ),
+                //TODO 7 Pasang ElevatedButton Sign In
+                SizedBox(
+                  height: 20,
+                ),
+                // TextButton(
+                //     onPressed: () {},
+                //     child: Text('Belum punya akun ? Daftar di sini')),
+                ElevatedButton(
+                    onPressed: () {
+                      _signIn();
+                    },
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(color: Colors.black),
+                    )),
+                // TODO: 8. Pasang TextButton Sign Up
+                const SizedBox(height: 10),
+                RichText(
+                    text: TextSpan(
+                        text: "Belum punya akun ? ",
+                        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                        children: <TextSpan>[
+                      TextSpan(
+                          text: 'Daftar disini',
+                          style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                              fontSize: 16),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, '/signup');
+                            })
+                    ])),
+              ],
+            )),
           ),
         ),
       ),

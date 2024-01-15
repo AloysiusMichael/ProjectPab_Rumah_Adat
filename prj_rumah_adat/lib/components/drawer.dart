@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rumah_adat/pages/home_page.dart';
 import 'package:rumah_adat/pages/intro_page.dart';
+import 'package:rumah_adat/pages/login_page.dart';
 import 'package:rumah_adat/pages/profile_page.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -70,21 +71,21 @@ class DrawerMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.info,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    'About',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  hoverColor: Colors.grey[600],
-                  onTap: () {},
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 25.0),
+              //   child: ListTile(
+              //     leading: Icon(
+              //       Icons.info,
+              //       color: Colors.white,
+              //     ),
+              //     title: Text(
+              //       'About',
+              //       style: TextStyle(color: Colors.white),
+              //     ),
+              //     hoverColor: Colors.grey[600],
+              //     onTap: () {},
+              //   ),
+              // ),
             ],
           ),
           Column(

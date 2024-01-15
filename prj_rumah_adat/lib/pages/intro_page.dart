@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rumah_adat/pages/home_page.dart';
+import 'package:rumah_adat/pages/login_page.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -36,7 +37,7 @@ class IntroPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 //sub tittle
                 const Text(
-                  "Selamat datang dalam aplikasi kami yang mempersembahkan keindahan dan kekayaan rumah adat Indonesia. Kami dengan bangga membuka jendela virtual ini, mengajak Anda untuk menjelajahi warisan budaya yang beragam melalui arsitektur, hiasan, dan cerita di balik setiap rumah adat. Aplikasi ini bukan hanya pintu gerbang virtual, melainkan teman setia yang membimbing Anda menembus sejarah dan tradisi yang kaya di seluruh nusantara. Mari bersama-sama meresapi keunikan setiap detail dan memperkaya pengetahuan serta apresiasi terhadap rumah adat Indonesia. Selamat menikmati perjalanan virtual Anda dan semoga aplikasi ini dapat membawa Anda lebih dekat dengan keajaiban budaya Indonesia yang memukau. Terima kasih telah bergabung dengan kami!",
+                  "Selamat datang dalam aplikasi kami yang mempersembahkan keindahan dan kekayaan rumah adat Indonesia. Aplikasi ini bukan hanya pintu gerbang virtual, melainkan teman setia yang membimbing Anda menembus sejarah dan tradisi yang kaya di seluruh nusantara. Mari bersama-sama meresapi keunikan setiap detail dan memperkaya pengetahuan serta apresiasi terhadap rumah adat Indonesia. Selamat menikmati perjalanan virtual Anda dan semoga aplikasi ini dapat membawa Anda lebih dekat dengan keajaiban budaya Indonesia yang memukau. Terima kasih telah bergabung dengan kami!",
                   style: TextStyle(fontSize: 20, color: Colors.grey),
                   textAlign: TextAlign.justify,
                 ),
@@ -48,7 +49,7 @@ class IntroPage extends StatelessWidget {
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomePage(),
+                          builder: (context) => LoginPage(),
                         )),
                     child: Container(
                       decoration: BoxDecoration(
