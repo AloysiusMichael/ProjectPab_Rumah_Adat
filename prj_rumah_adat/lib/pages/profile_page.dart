@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  void signIn() {
+  void logOut() {
     setState(() {
       Navigator.pushNamed(context, '/signin');
     });
@@ -143,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               onPressed: () {},
                               icon: Icon(
                                 Icons.camera_alt,
-                                color: Colors.grey[50],
+                                color: Colors.grey[700],
                               )),
                       ],
                     ),
@@ -230,32 +230,32 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 4,
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 3,
-                      child: const Row(children: [
-                        Icon(
-                          Icons.favorite,
-                          color: Color.fromARGB(255, 255, 7, 28),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          'Favorit',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ]),
-                    ),
-                    Expanded(
-                        child: Text(
-                      ': $faouriteCandiCount',
-                      style: const TextStyle(fontSize: 18),
-                    )),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     SizedBox(
+                //       width: MediaQuery.of(context).size.width / 3,
+                //       child: const Row(children: [
+                //         Icon(
+                //           Icons.favorite,
+                //           color: Color.fromARGB(255, 255, 7, 28),
+                //         ),
+                //         SizedBox(
+                //           width: 8,
+                //         ),
+                //         Text(
+                //           'Favorit',
+                //           style: TextStyle(
+                //               fontSize: 18, fontWeight: FontWeight.bold),
+                //         ),
+                //       ]),
+                //     ),
+                // Expanded(
+                //     child: Text(
+                //   ': $faouriteCandiCount',
+                //   style: const TextStyle(fontSize: 18),
+                // )),
+                // ],
+                // ),
 
                 const SizedBox(
                   height: 4,
@@ -275,7 +275,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       width: double.infinity,
                       height: 40,
                       child: TextButton(
-                          onPressed: signIn, child: const Text("Sign In")),
+                          onPressed: logOut,
+                          child: const Text(
+                            "Log Out",
+                            style: TextStyle(color: Colors.black),
+                          )),
                     ),
                   ),
                 ),

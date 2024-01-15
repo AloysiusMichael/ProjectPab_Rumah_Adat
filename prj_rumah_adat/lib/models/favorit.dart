@@ -9,14 +9,14 @@ class Favorit extends ChangeNotifier {
         nama: "Rumah Gadang",
         asal: "Sumatera Barat",
         deskripsi:
-            "Rumah Gadang adalah nama untuk rumah adat Minangkabau yang merupakan rumah tradisional dan banyak jumpai di Sumatera Barat, Indonesia. Rumah ini juga disebut dengan nama lain oleh masyarakat setempat dengan nama Rumah Bagonjong atau ada juga yang menyebut dengan nama Rumah Baanjuang.",
+            "Rumah Gadang adalah nama untuk rumah adat Minangkabau yang merupakan rumah tradisional dan banyak jumpai di Sumatera Barat, Indonesia. Rumah ini juga disebut dengan nama lain oleh masyarakat setempat dengan nama Rumah Bagonjong atau ada juga yang menyebut dengan nama Rumah Banjuang.",
         imagePath: 'images/rmh_gadang.jpg',
         dibangun: '1895'),
     Rumah(
         nama: "Rumah Bolon",
         asal: "Sumatera Utara",
         deskripsi:
-            "Rumah adat Bolon terdiri dari beberapa jenis rumah adat, seperti rumah Bolon Simalungun, Bolon Karo, Bolon Pakpak, Bolon Angkota, dan lain sebagainya. Secara umum Bolon berkonsep rumah panggung dengan tiang penyangga setinggi 1,75 m. ",
+            "Rumah adat Bolon terdiri dari beberapa jenis rumah adat, seperti rumah Bolon Simalungun, Bolon Karo, Bolon Pakpak, Bolon Angkota, dan lain sebagainya. Secara umum Bolon berkonsep rumah panggung dengan tiang penyangga setinggi 1,75 m. Jadi ketika hendak memasuki rumah, tamu ataupun pemiliknya harus melewati tangga. Di mana tangga ini selalu berjumlah ganjil. Selain berkonsep panggung dengan tiang penyangga, ciri khas lain rumah Bolon ini ada pada dindingnya yang pasti dilengkapi dengan ornamen khas Simalungan. Ornamen jenis ini selalu memakai warna hitam, merah, dan putih. Ada makna tersendiri kenapa ornamen ini yang dipakai. Masyarakat percaya bahwa ornamen Simalungan menjadi lambang pandangan kosmologis dan filosofi dari budaya suku Batak. ",
         imagePath: 'images/rmh_bolon.jpg',
         dibangun: '1864'),
     Rumah(
